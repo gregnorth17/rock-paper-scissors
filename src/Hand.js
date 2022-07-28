@@ -1,16 +1,7 @@
-const Hand = ({img}) => {
-	console.log(img);
-	const style = {
-		border: "15px solid red",
-		borderRadius: "50%",
-		width: "100px",
-		padding: "1em"
-
-	}
+const Hand = (props) => {
+	
 	return (
-		
-			<img style={style} src={img} alt="" />
-		
+			<img className={props.class}  src={props.img} alt="hand" />
 	)
 }
 

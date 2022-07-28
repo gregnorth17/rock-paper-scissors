@@ -6,6 +6,7 @@ import paper from "./images/icon-paper.svg";
 import scissors from "./images/icon-scissors.svg";
 
 function App() {
+
   return (
     <div className="App">
 			<div className="container">
@@ -19,12 +20,13 @@ function App() {
 					<p className="score">0</p>
 				</div>
 			</div>
-			<div>
-				<img src={triangle} alt="" />
+			<div className="triangle">
+				<img className="triangle2" src={triangle} alt="" />
+				<Hand  img={rock} class="rock" />
+				<Hand  img={paper} class="paper" />
+				<Hand  img={scissors} class="scissors"/>
 			</div>
-			<Hand img={rock} />
-			<Hand img={paper} />
-			<Hand img={scissors} />
+			<button>Rules</button>
     </div>
   );
 }
