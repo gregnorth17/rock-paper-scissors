@@ -1,11 +1,30 @@
+import { useState } from "react";
 import './App.css';
 import Hand from "./Hand";
-import triangle from "./images/bg-triangle.svg";
 import rock from "./images/icon-rock.svg";
 import paper from "./images/icon-paper.svg";
 import scissors from "./images/icon-scissors.svg";
+import rules from "./images/image-rules.svg";
 
 function App() {
+
+	const [userChoice, setUserChoice] = useState("");
+	const [chosenClass, setChosenClass] = useState("");
+
+
+	const openRules = () => {
+		document.querySelector(".overlay").style.display = "block"; 
+	}
+
+	const closeRules = () => {
+		document.querySelector(".overlay").style.display = "none"; 
+	}
+
+	
+	console.log(userChoice)
+	console.log(chosenClass)
+	
+
 
   return (
     <div className="App">
@@ -20,14 +39,27 @@ function App() {
 					<p className="score">0</p>
 				</div>
 			</div>
-			<div className="triangle">
-				<img className="triangle2" src={triangle} alt="" />
-				<Hand  img={rock} class="rock" />
-				<Hand  img={paper} class="paper" />
-				<Hand  img={scissors} class="scissors"/>
+			{
+				userChoice == false ? 
+				<div className="triangle">
+					<Hand setChosenClass={setChosenClass} setUserChoice={setUserChoice}  img={rock} class="rock" />
+					<Hand setChosenClass={setChosenClass} setUserChoice={setUserChoice} img={paper} class="paper" />
+					<Hand setChosenClass={setChosenClass} setUserChoice={setUserChoice} img={scissors} class="scissors" />
+				</div>:
+				<Hand img={userChoice} class={chosenClass} />
+			}
+
+			<button onClick={openRules} className="btn">Rules</button>
+			<div className="overlay">
+				<div className="rules">
+					<h3 className="rules-title">RULES</h3>
+					<img className="rules-img" src={rules} alt="" />
+					<button className="rules-btn" onClick={closeRules}>X</button>
+				</div>
 			</div>
-			<button>Rules</button>
     </div>
+
+
   );
 }
 
