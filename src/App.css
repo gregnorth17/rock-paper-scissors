@@ -52,8 +52,8 @@ p {
 
 .triangle {
 	position: relative;
-	margin: 8em auto;
-	width: 80%;
+	margin: 7em auto;
+	width: 65%;
 	height: 200px;
 	background-image: url("./images/bg-triangle.svg");
 	background-position: center;
@@ -148,4 +148,33 @@ p {
 	border: none;
 	background: none;
 	color: hsl(229, 25%, 31%);
+}
+
+/* USER SELECTED */
+
+.game {
+	display: flex;
+	justify-content: space-between;
+	margin: 5em auto 12em auto;
+	width: 70%;
+	text-align: center;
+}
+
+.chosen,
+.random {
+	margin-bottom: .7em;
+}
+
+.chosen {
+	position: static;
+}
+
+.game-text {
+	font-size: .75rem;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+.random {
+	position: static;
 }
