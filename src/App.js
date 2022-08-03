@@ -8,7 +8,9 @@ import rules from "./images/image-rules.svg";
 
 function App() {
 
-	const [score, setScore] = useState(0);
+
+
+	const [score, setScore] = useState(JSON.parse(localStorage.getItem("score")));
 	const [start, setStart] = useState(false);
 	const [userChoice, setUserChoice] = useState("");
 	const [chosenClass, setChosenClass] = useState("");
@@ -19,16 +21,20 @@ function App() {
 	const [resultMessage, setResultMessage] = useState("");
 
 	useEffect(() => {
+		localStorage.setItem("score", JSON.stringify(score));
+	},[score])
+
+	useEffect(() => {
 		const getHouseHand = () => {
 			const houseImg = [rock, paper, scissors];
 			const houseArray = ["rock", "paper", "scissors"]
 		
 			const randomNumber = Math.floor(Math.random() * houseArray.length);
 			setHouseChoice(houseArray[randomNumber]);
-			setRandomImg(houseImg[randomNumber])
+			setRandomImg(houseImg[randomNumber]);
 		}
 		getHouseHand();
-	},[randomImg])
+	},[randomImg]);
 
 
 	useEffect(() => {
@@ -71,52 +77,58 @@ function App() {
 		setRandomImg("");
 		setResultMessage("");
 	}
+
+	
 	
   return (
     <div className="App">
-			<div className="container">
-				<div className="options">
-					<h3 className="option">Rock</h3>
-					<h3 className="option">Paper</h3>
-					<h3 className="option">Scissors</h3>
-				</div>
-				<div className="score-container">
-					<p className="score-text">score</p>
-					<p className="score">{score}</p>
+			<div>
+				<div className="container">
+					<div className="options">
+						<h3 className="option">Rock</h3>
+						<h3 className="option">Paper</h3>
+						<h3 className="option">Scissors</h3>
+					</div>
+					<div className="score-container">
+						<p className="score-text">score</p>
+						<p className="score">{score}</p>
+					</div>
 				</div>
 			</div>
 			{
 				userChoice == false ? 
-				<div className="triangle">
-					<Hand setStart={setStart} setChosenClass={setChosenClass} setUserChoice={setUserChoice}  img={rock} class="rock" />
-					<Hand setStart={setStart} setChosenClass={setChosenClass} setUserChoice={setUserChoice} img={paper} class="paper" />
-					<Hand setStart={setStart} setChosenClass={setChosenClass} setUserChoice={setUserChoice} img={scissors} class="scissors" />
-				</div>:
-				<div className="game">
-					<div>
-						<Hand img={userChoice} class={`chosen ${chosenClass}`} />
-						<p className="game-text">you picked</p>
+					<div className="triangle">
+						<Hand setStart={setStart} setChosenClass={setChosenClass} setUserChoice={setUserChoice}  img={rock} class="rock" />
+						<Hand setStart={setStart} setChosenClass={setChosenClass} setUserChoice={setUserChoice} img={paper} class="paper" />
+						<Hand setStart={setStart} setChosenClass={setChosenClass} setUserChoice={setUserChoice} img={scissors} class="scissors" />
+					</div>:
+					<div className="game">
+						<div>
+							<Hand img={userChoice} class={`chosen ${chosenClass}`} />
+							<p className="game-text">you picked</p>
+						</div>
+						<div>
+							<Hand img={randomImg} class={`random ${houseChoice}`}/>
+							<p className="game-text">the house picked</p>
+						</div>
 					</div>
-					<div>
-						<Hand img={randomImg} class={`random ${houseChoice}`}/>
-						<p className="game-text">the house picked</p>
-					</div>
-					{
+				
+			}
+			{
 					start && 
-					<div>
-						<p>{resultMessage}</p>
-						<button onClick={restartGame}>play again</button>
+					<div className="play-again">
+						<p className="result-message">{resultMessage}</p>
+						<button className="btn play-again-btn" onClick={restartGame}>play again</button>
 					</div>
 					}
-				</div>
-			}
-
+			<div>
 			<button onClick={openRules} className="btn">Rules</button>
-			<div className="overlay">
-				<div className="rules">
-					<h3 className="rules-title">RULES</h3>
-					<img className="rules-img" src={rules} alt="" />
-					<button className="rules-btn" onClick={closeRules}>X</button>
+				<div className="overlay">
+					<div className="rules">
+						<h3 className="rules-title">RULES</h3>
+						<img className="rules-img" src={rules} alt="" />
+						<button className="rules-btn" onClick={closeRules}>X</button>
+					</div>
 				</div>
 			</div>
     </div>

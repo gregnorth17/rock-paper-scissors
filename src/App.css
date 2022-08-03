@@ -8,7 +8,13 @@ body {
 	background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 	font-family: 'Barlow Semi Condensed', sans-serif;
 	color: #fff;
-	height: 100vh;
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 600px;
 }
 
 h3 {
@@ -52,7 +58,7 @@ p {
 
 .triangle {
 	position: relative;
-	margin: 7em auto;
+	margin: 0 auto;
 	width: 65%;
 	height: 200px;
 	background-image: url("./images/bg-triangle.svg");
@@ -67,7 +73,7 @@ p {
 	position: absolute;
 	width: 25px;
 	height: 25px;
-	
+	cursor: pointer;
 }
 
 .hand {
@@ -76,6 +82,7 @@ p {
 	width: 100px;
 	padding: 1.5em;
 	border-radius: 50%;
+	cursor: pointer;
 }
 
 .rock {
@@ -108,6 +115,7 @@ p {
 	text-transform: uppercase;
 	letter-spacing: .5px;
 	font-size: .75em;
+	cursor: pointer;
 }
 
 .overlay {
@@ -155,7 +163,8 @@ p {
 .game {
 	display: flex;
 	justify-content: space-between;
-	margin: 5em auto 12em auto;
+	margin: 0 auto;
+	margin-top: 2.5em;
 	width: 70%;
 	text-align: center;
 }
@@ -177,4 +186,17 @@ p {
 
 .random {
 	position: static;
+}
+
+.play-again {
+	text-align: center;
+}
+
+.result-message {
+	font-size: 4rem;
+}
+
+.play-again-btn {
+	background: #fff;
+	color: hsl(214, 47%, 23%);
 }

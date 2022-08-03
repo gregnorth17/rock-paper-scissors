@@ -7,7 +7,6 @@ const Hand = (props) => {
 	}
 
 	return (
-
 		<div onClick={selectHand}>
 			<img  className={`hand ${props.class}`}  src={props.img} alt="hand" />
 		</div>
